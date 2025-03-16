@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Sampson | Portfolio</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #f5f5f5;
+            --secondary: #8B8B8B;
+            --accent: #E0C3A0;
+            --dark: #1A1A1A;
+            --darker: #111111;
+            --text: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        h1 {
+            font-size: 5rem;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--primary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--accent);
+            padding: 12px 25px;
+            border: 1px solid var(--accent);
+            border-radius: 0;
+            margin-top: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        section {
+            padding: 6rem 0;
+        }
+        
+        .section-title {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(26, 26, 26, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1.5rem 0;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--darker);
+            background-image: url('https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.0/collection/components/icon/svg/headset.svg');
+            background-position: right bottom;
+            background-repeat: no-repeat;
+            background-size: 600px;
+            background-blend-mode: soft-light;
+            background-opacity: 0.1;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .hero-text {
+            max-width: 50%;
+            z-index: 10;
+        }
+        
+        .-image {
+            width: 45%;
+            position: relative;
+            z-index: 5;
+        }
+        
+        .hero-image img {
+            width: 50%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        .hero-bg-text {
+            position: absolute;
+            font-size: 20vw;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.03);
+            text-transform: uppercase;
+            z-index: 1;
+            line-height: 0.8;
+            white-space: nowrap;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .subheading {
+            font-size: 1.3rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+        
+        .highlight {
+            color: var(--accent);
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--darker);
+            background-image: url('https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.0/collection/components/icon/svg/musical-notes-outline.svg');
+            background-position: left top;
+            background-repeat: no-repeat;
+            background-size: 400px;
+            background-blend-mode: soft-light;
+            background-opacity: 0.05;
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 5rem;
+        }
+        
+        .about-image {
+            flex: 1;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .interests {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .interest-item {
+            flex: 1;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .interest-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        /* Experience Section */
+        .experience {
+            background-color: var(--dark);
+        }
+        
+        .timeline {
+            position: relative;
+            margin-top: 3rem;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 1px;
+            background-color: rgba(255, 255, 255, 0.1);
+            left: 0;
+        }
+        
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            left: -6px;
+            top: 8px;
+        }
+        
+        .timeline-date {
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .timeline-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-subtitle {
+            color: var(--secondary);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            background-color: var(--darker);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .portfolio-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        /* Skills Section */
+        .skills {
+            background-color: var(--dark);
+            background-image: url('https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.0/collection/components/icon/svg/headset.svg');
+            background-position: right center;
+            background-repeat: no-repeat;
+            background-size: 300px;
+            background-blend-mode: soft-light;
+            background-opacity: 0.05;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .skill-category {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+        }
+        
+        .skill-category-title {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--darker);
+        }
+        
+        .contact-content {
+            display: flex;
+            gap: 5rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-item-title {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: var(--text);
+            font-size: 1rem;
+        }
+        
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        button[type="submit"] {
+            background-color: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--darker);
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .social-links {
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            color: var(--secondary);
+            margin: 0 15px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 3rem;
+            }
+            
+            .hero-image {
+                width: 80%;
+            }
+            
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+            
+            .section-title:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .section-title, .timeline-item {
+                text-align: center;
+            }
+            
+            .timeline:before {
+                left: 50%;
+            }
+            
+            .timeline-item {
+                padding-left: 0;
+                padding-top: 2rem;
+            }
+            
+            .timeline-item:before {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">CS</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-text">CHRISTIAN</div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="subheading">Hi there, I'm</p>
+                    <h1>CHRIS<span class="highlight">TIAN</span></h1>
+                    <p>Nursing Student | Music Producer | Model</p>
+                    <p>Combining healthcare expertise with creative passion to make a difference.</p>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+                <div class="hero-image">
+                  
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="chris.png" alt="Christian Sampson">
+                </div>
+                <div class="about-text">
+                    <p>I am a sophomore Nursing student at Morgan State University with multiple passions that span healthcare, music production, and modeling. This unique combination allows me to bring creativity and compassion to everything I do.</p>
+                    <p>My journey in healthcare began during my internship at Cooperman Barnabas Hospital, where I gained valuable clinical experience. Alongside my academic pursuits, I've developed my skills as a music producer and model, allowing me to express myself creatively while developing transferable skills that enhance my nursing practice.</p>
+                    <p>My goal is to integrate these diverse experiences to become an innovative healthcare professional who understands both the science of medicine and the art of human connection.</p>
+                    
+                    <div class="interests">
+                        <div class="interest-item">
+                            <h3>Nursing</h3>
+                            <p>Patient care, clinical skills, and healthcare innovation.</p>
+                        </div>
+                        <div class="interest-item">
+                            <h3>Music Production</h3>
+                            <p>Creating beats, mixing tracks, and audio engineering.</p>
+                        </div>
+                        <div class="interest-item">
+                            <h3>Modeling</h3>
+                            <p>Fashion, photography, and professional presentation.</p>
+                        </div>
+                    </div>
+                    
+                    <a href="https://drive.google.com/file/d/1M6eKcWil0bjXCl4t_jDfP-dYdLR7faQZ/view?usp=sharing" class="btn">Download Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">February 2023 - May 2023</div>
+                    <h3 class="timeline-title">Hospital Intern</h3>
+                    <div class="timeline-subtitle">Cooperman Barnabas, West Orange, NJ</div>
+                    <p>Assisted medical personnel in providing patient care and shadowed physical therapists during rehabilitation sessions. Developed fundamental clinical skills in a hospital environment while gaining valuable healthcare experience.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2022 - August 2023</div>
+                    <h3 class="timeline-title">Sales Associate</h3>
+                    <div class="timeline-subtitle">Skyzone, Springfield, NJ</div>
+                    <p>Provided excellent customer service while managing children's safety as a party host. Trained 5+ new employees and increased sales through effective upselling strategies, developing leadership and communication skills valuable in healthcare settings.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023 - Present</div>
+                    <h3 class="timeline-title">Music Producer</h3>
+                    <div class="timeline-subtitle">Independent</div>
+                    <p>Created original compositions and collaborated with other artists to produce tracks. Developed technical skills in audio engineering and mixing while building a creative portfolio.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023 - Present</div>
+                    <h3 class="timeline-title">Model</h3>
+                    <div class="timeline-subtitle">ABC Modeling</div>
+                    <p>Participated in fashion shoots and runway presentations. Developed professional presence and presentation skills while representing the ABC Modeling organization at Morgan State University.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <h3 class="portfolio-title">Clinical Experience</h3>
+                    <p>Documentation of patient care skills developed during hospital internship.</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3 class="portfolio-title">Music Production</h3>
+                    <p>Original beats and compositions showcasing audio engineering skills.</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3 class="portfolio-title">Modeling Portfolio</h3>
+                    <p>Professional photoshoots and runway appearances with ABC Modeling.</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3 class="portfolio-title">Leadership & Community</h3>
+                    <p>Involvement with S.M.O.O.T.H and campus organizations at Morgan State.</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3 class="portfolio-title">Healthcare Projects</h3>
+                    <p>Academic and practical projects from nursing education.</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3 class="portfolio-title">Achievements</h3>
+                    <p>Award of Excellence from Rutgers University Health Science Careers Program.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Healthcare</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Patient Care</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Medical Knowledge</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Clinical Procedures</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Music Production</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Beat Making</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Mixing</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Audio Engineering</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Modeling</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Photoshoots</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Runway</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Fashion Styling</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 class="skill-category-title">Professional</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Leadership</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Communication</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Time Management</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3 class="contact-item-title">Email</h3>
+                        <p>chsam8@morgan.edu</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3 class="contact-item-title">Phone</h3>
+                        <p>+1 (929) 320-3305</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3 class="contact-item-title">Location</h3>
+                        <p>Brooklyn, NY</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3 class="contact-item-title">Connect</h3>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/christian-sampson-b84a2a267/">LinkedIn</a>
+                            <a href="#">SoundCloud</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Your Message"></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Christian Sampson. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
