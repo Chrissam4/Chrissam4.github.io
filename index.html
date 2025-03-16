@@ -151,9 +151,20 @@
             font-size: 0.9rem;
         }
         
+        /* Mobile Nav */
+        .mobile-nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
         /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
@@ -165,6 +176,7 @@
             background-size: 600px;
             background-blend-mode: soft-light;
             background-opacity: 0.1;
+            padding: 80px 0;
         }
         
         .hero-content {
@@ -179,7 +191,7 @@
             z-index: 10;
         }
         
-        .-image {
+        .hero-image {
             width: 45%;
             position: relative;
             z-index: 5;
@@ -239,6 +251,8 @@
         .about-image img {
             width: 100%;
             height: auto;
+            max-width: 100%;
+            border-radius: 5px;
         }
         
         .about-text {
@@ -255,12 +269,6 @@
             flex: 1;
             padding: 1.5rem;
             background-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        .interest-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 1rem;
         }
         
         /* Experience Section */
@@ -492,7 +500,17 @@
         }
         
         /* Responsive */
+        @media (max-width: 1200px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
         @media (max-width: 992px) {
+            h1 {
+                font-size: 4.5rem;
+            }
+            
             .hero-content {
                 flex-direction: column;
                 text-align: center;
@@ -509,6 +527,12 @@
             
             .about-content, .contact-content {
                 flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .section-title {
+                text-align: center;
+                display: block;
             }
             
             .section-title:after {
@@ -516,41 +540,117 @@
                 transform: translateX(-50%);
             }
             
-            .section-title, .timeline-item {
-                text-align: center;
+            .timeline-item {
+                text-align: left;
             }
             
             .timeline:before {
-                left: 50%;
+                left: 0;
             }
             
-            .timeline-item {
-                padding-left: 0;
-                padding-top: 2rem;
-            }
-            
-            .timeline-item:before {
-                left: 50%;
-                transform: translateX(-50%);
-                top: 0;
+            .interests {
+                flex-direction: column;
             }
         }
         
         @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
             h1 {
                 font-size: 3.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
             }
             
             .nav-links {
                 display: none;
             }
             
-            .portfolio-grid {
+            .mobile-nav-toggle {
+                display: block;
+            }
+            
+            .nav-active {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 75%;
+                height: 100vh;
+                background-color: var(--darker);
+                padding: 80px 30px 30px;
+                z-index: 1000;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+            
+            .nav-active li {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .nav-active a {
+                display: block;
+                padding: 10px 0;
+                font-size: 1.1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+            
+            .portfolio-grid,
+            .skills-grid {
                 grid-template-columns: 1fr;
             }
             
-            .skills-grid {
-                grid-template-columns: 1fr;
+            .portfolio-item {
+                height: auto;
+                min-height: 180px;
+            }
+            
+            .contact-content {
+                gap: 3rem;
+            }
+            
+            .hero {
+                background-size: 300px;
+            }
+            
+            .hero-bg-text {
+                font-size: 25vw;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .subheading {
+                font-size: 1rem;
+            }
+            
+            .timeline-item {
+                padding-left: 1.5rem;
+            }
+            
+            .portfolio-title {
+                font-size: 1.2rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .social-links a {
+                margin: 0 8px;
             }
         }
     </style>
@@ -561,7 +661,8 @@
         <div class="container">
             <nav>
                 <div class="logo">CS</div>
-                <ul class="nav-links">
+                <button class="mobile-nav-toggle" id="navToggle">☰</button>
+                <ul class="nav-links" id="navLinks">
                     <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
@@ -585,7 +686,7 @@
                     <a href="#contact" class="btn">Get In Touch</a>
                 </div>
                 <div class="hero-image">
-                  
+                  <!-- Hero image goes here -->
                 </div>
             </div>
         </div>
@@ -827,5 +928,25 @@
             <p>&copy; 2025 Christian Sampson. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <!-- JavaScript for Mobile Navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            navToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('nav-active');
+            });
+            
+            // Close mobile menu when clicking a nav link
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('nav-active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
